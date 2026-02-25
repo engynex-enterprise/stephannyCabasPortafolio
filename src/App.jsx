@@ -12,17 +12,29 @@ export default function App() {
 
   return (
     <>
-      {/* Scroll progress bar - Apple style */}
       <div className="scroll-progress" />
-
       <Navbar />
+
       <main>
         <Hero />
-        <About />
-        <Gallery />
-        <Contact />
+        <div className="space-y-3 px-2 md:px-4 py-3">
+          <div className="rounded-3xl overflow-hidden section-tile">
+            <About />
+          </div>
+          <div className="rounded-3xl overflow-hidden section-tile">
+            <Gallery />
+          </div>
+          <div className="rounded-3xl overflow-hidden section-tile">
+            <Contact />
+          </div>
+        </div>
       </main>
-      <Footer />
+
+      <div className="px-2 md:px-4 pb-3">
+        <div className="rounded-3xl overflow-hidden section-tile">
+          <Footer />
+        </div>
+      </div>
     </>
   );
 }

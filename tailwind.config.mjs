@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -17,9 +18,14 @@ export default {
         },
         cream: '#FAF7F2',
         smoke: '#8A8A8A',
+        warm: {
+          DEFAULT: '#FBF8F3',
+          100: '#F3EDE4',
+          200: '#EBE3D8',
+        },
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'serif'],
+        display: ['Clash Display', 'sans-serif'],
         body: ['Montserrat', 'sans-serif'],
       },
       letterSpacing: {
