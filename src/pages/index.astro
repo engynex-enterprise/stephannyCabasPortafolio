@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Gallery from '../components/Gallery.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Stephanny Cabas | Asesora - Promotora - Modelo">
+  <Navbar />
+  <main>
+    <Hero />
+    <About />
+    <Gallery />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animated elements
+  const animatedElements = document.querySelectorAll(
+    '.fade-up, .fade-in, .slide-left, .slide-right, .scale-in'
+  );
+
+  animatedElements.forEach((el) => observer.observe(el));
+</script>

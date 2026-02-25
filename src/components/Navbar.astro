@@ -1,0 +1,129 @@
+---
+const navLinks = [
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Sobre Mi', href: '#sobre-mi' },
+  { label: 'Galeria', href: '#galeria' },
+  { label: 'Contacto', href: '#contacto' },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#inicio" class="font-display text-2xl font-bold gradient-text">
+        Stephanny Cabas
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="nav-link relative text-sm font-medium tracking-wide uppercase text-white/90 hover:text-white transition-colors duration-300"
+          >
+            {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-purple transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menu-btn"
+        class="md:hidden flex flex-col items-center justify-center w-10 h-10 gap-1.5 relative z-50"
+        aria-label="Toggle menu"
+      >
+        <span class="menu-line w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+        <span class="menu-line w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span class="menu-line w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-0 bg-dark/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 z-40"
+  >
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link text-2xl font-display text-white/90 hover:text-primary transition-colors duration-300"
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  #navbar.scrolled {
+    background: rgba(26, 26, 46, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #FF6B6B, #A855F7);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Mobile menu open state */
+  #menu-btn.open .menu-line:nth-child(1) {
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+  #menu-btn.open .menu-line:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-btn.open .menu-line:nth-child(3) {
+    transform: rotate(-45deg) translate(3px, -3px);
+  }
+
+  #mobile-menu.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+</style>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('scrolled');
+    } else {
+      navbar?.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn?.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    mobileMenu?.classList.toggle('open');
+    document.body.style.overflow = mobileMenu?.classList.contains('open') ? 'hidden' : '';
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menuBtn?.classList.remove('open');
+      mobileMenu?.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

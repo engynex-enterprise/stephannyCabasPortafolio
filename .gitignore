@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# environment variables
+.env
+.env.*
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# astro
+.astro/
+
+# debug
+npm-debug.log*
