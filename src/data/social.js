@@ -3,8 +3,8 @@ export const TIKTOK_URL = 'https://www.tiktok.com/@stephannycabas?_r=1&_t=ZS-94D
 export const WHATSAPP_URL = 'https://wa.me/573152774797';
 export const PHONE = '+57 315 2774797';
 export const PHONE_HREF = 'tel:+573152774797';
-export const EMAIL = 'contacto@stephannycabas.me';
-export const EMAIL_HREF = 'mailto:contacto@stephannycabas.me';
+export const EMAIL = 'contacto@stephannycabas.site';
+export const EMAIL_HREF = 'mailto:contacto@stephannycabas.site';
 
 export const socialLinks = [
   {
