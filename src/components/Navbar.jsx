@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { socialLinks } from '../data/social';
 
 const navLinks = [
   { label: 'Inicio', href: '#inicio' },
@@ -41,7 +42,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           <a
             href="#inicio"
-            className="font-display text-xl font-semibold tracking-wider uppercase dark:text-cream text-dark hover:text-gold transition-colors duration-500"
+            className="text-xl font-semibold tracking-tight uppercase dark:text-cream text-dark hover:text-gold transition-colors duration-500"
           >
             Stephanny
           </a>
@@ -52,12 +53,29 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="group relative text-[10px] font-body font-medium tracking-mega uppercase dark:text-cream/50 text-dark/50 dark:hover:text-cream hover:text-dark transition-colors duration-500"
+                className="hover-expand editorial-underline text-[10px] font-medium tracking-[0.12em] uppercase dark:text-cream/50 text-dark/50 dark:hover:text-cream hover:text-dark transition-colors duration-500"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold transition-all duration-700 group-hover:w-full" />
               </a>
             ))}
+
+            {/* Social icons */}
+            <div className="flex items-center gap-1.5 ml-2">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-lg flex items-center justify-center text-gold/50 hover:text-gold hover:bg-gold/10 transition-all duration-500"
+                  aria-label={s.label}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d={s.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
 
             {/* Theme toggle */}
             <button
@@ -101,9 +119,9 @@ export default function Navbar() {
               aria-label="Menu"
             >
               <div className="relative w-5 h-3">
-                <span className={`absolute top-0 left-0 w-full h-[1px] dark:bg-cream bg-dark transition-all duration-500 ${menuOpen ? 'rotate-45 top-1.5' : ''}`} />
-                <span className={`absolute top-1.5 left-0 w-full h-[1px] dark:bg-cream bg-dark transition-all duration-500 ${menuOpen ? 'opacity-0 scale-0' : ''}`} />
-                <span className={`absolute top-3 left-0 w-full h-[1px] dark:bg-cream bg-dark transition-all duration-500 ${menuOpen ? '-rotate-45 top-1.5' : ''}`} />
+                <span className={`absolute top-0 left-0 w-full h-[0.5px] dark:bg-cream bg-dark transition-all duration-500 ${menuOpen ? 'rotate-45 top-1.5' : ''}`} />
+                <span className={`absolute top-1.5 left-0 w-full h-[0.5px] dark:bg-cream bg-dark transition-all duration-500 ${menuOpen ? 'opacity-0 scale-0' : ''}`} />
+                <span className={`absolute top-3 left-0 w-full h-[0.5px] dark:bg-cream bg-dark transition-all duration-500 ${menuOpen ? '-rotate-45 top-1.5' : ''}`} />
               </div>
             </button>
           </div>
@@ -119,13 +137,13 @@ export default function Navbar() {
         }`}
       >
         <div className="absolute inset-0 dark:bg-dark/80 bg-warm/80 backdrop-blur-3xl" />
-        <div className="relative h-full flex flex-col items-center justify-center gap-8">
+        <div className="relative h-full flex flex-col items-center justify-center gap-10">
           {navLinks.map((link, i) => (
             <a
               key={link.href}
               href={link.href}
               onClick={closeMenu}
-              className={`font-display text-3xl font-medium dark:text-cream/80 text-dark/80 hover:text-gold transition-all duration-700 ${
+              className={`text-3xl font-light tracking-wide dark:text-cream/80 text-dark/80 hover:text-gold transition-all duration-700 ${
                 menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}
               style={{ transitionDelay: menuOpen ? `${150 + i * 100}ms` : '0ms' }}
@@ -135,10 +153,31 @@ export default function Navbar() {
           ))}
           <div
             className={`gold-line mt-6 transition-all duration-1000 ${
-              menuOpen ? 'w-[60px] opacity-100' : 'w-0 opacity-0'
+              menuOpen ? 'w-[80px] opacity-100' : 'w-0 opacity-0'
             }`}
             style={{ transitionDelay: menuOpen ? '550ms' : '0ms' }}
           />
+          <div
+            className={`flex items-center gap-4 mt-8 transition-all duration-700 ${
+              menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}
+            style={{ transitionDelay: menuOpen ? '650ms' : '0ms' }}
+          >
+            {socialLinks.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-gold/60 hover:text-gold hover:bg-gold/10 transition-all duration-500"
+                aria-label={s.label}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d={s.path} />
+                </svg>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </nav>

@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Logo */}
           <a
             href="#inicio"
-            className="font-display text-2xl font-semibold tracking-wider uppercase dark:text-cream text-dark hover:text-gold transition-colors duration-500"
+            className="text-2xl font-semibold tracking-tight dark:text-cream text-dark hover:text-gold transition-colors duration-500"
           >
             Stephanny Cabas
           </a>
@@ -29,7 +29,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[10px] font-body font-medium tracking-mega uppercase text-[var(--text-secondary)] hover:text-gold transition-colors duration-500"
+                className="editorial-underline text-[10px] font-medium tracking-[0.12em] uppercase text-[var(--text-secondary)] hover:text-gold transition-colors duration-500"
               >
                 {link.label}
               </a>
@@ -44,12 +44,13 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 glass rounded-lg flex items-center justify-center dark:text-cream/30 text-dark/30 transition-all duration-500 hover:scale-110"
+                className="w-10 h-10 glass rounded-xl flex items-center justify-center transition-all duration-500 hover:scale-110"
+                style={{ color: social.color, backgroundColor: social.color + '12' }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = social.color + '25'; e.currentTarget.style.boxShadow = `0 0 25px ${social.color}30`; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = social.color + '12'; e.currentTarget.style.boxShadow = ''; }}
                 aria-label={social.label}
-                onMouseEnter={(e) => { e.currentTarget.style.color = social.color; e.currentTarget.style.backgroundColor = social.color + '15'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = ''; e.currentTarget.style.backgroundColor = ''; }}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d={social.path} />
                 </svg>
               </a>
@@ -58,16 +59,26 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--border)] to-transparent mb-8" />
+        <div className="h-[0.5px] bg-gradient-to-r from-transparent via-[var(--border)] to-transparent mb-8" />
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[var(--text-muted)] text-[10px] tracking-wider uppercase">
+          <p className="text-[var(--text-muted)] text-xs font-normal tracking-wider">
             &copy; {currentYear} Stephanny Cabas. Todos los derechos reservados.
           </p>
-          <p className="text-[var(--text-muted)] text-[10px] tracking-wider">
-            by <span className="text-gold/60 hover:text-gold transition-colors duration-500">Engynex</span>
-          </p>
+          <a
+            href="https://engynex.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 group"
+          >
+            <span className="text-[var(--text-muted)] text-xs font-normal tracking-wider">by</span>
+            <img
+              src="/images/engynex-logo.png"
+              alt="Engynex"
+              className="h-4 opacity-40 group-hover:opacity-80 transition-opacity duration-500"
+            />
+          </a>
         </div>
       </div>
     </footer>
